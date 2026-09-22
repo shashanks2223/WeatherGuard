@@ -5,7 +5,9 @@ import { Header } from './components/Header';
 import { PoliciesModal } from './components/PoliciesModal';
 import { ChatMessage, HealthStatus, PolicyItem } from './types';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = (import.meta.env.VITE_API_URL || '')
+  .replace(/\/+$/, '')
+  .replace(/\/api$/, '');
 
 export function App() {
   const [sessionId, setSessionId] = useState(() => crypto.randomUUID());
