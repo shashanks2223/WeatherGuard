@@ -19,10 +19,11 @@ app = FastAPI(
 logger = logging.getLogger("weatherguard.api")
 policy_engine = PolicyEngine(policies_dir=settings.POLICIES_DIR)
 graph = create_weatherguard_graph(GraphNodes(policy_engine=policy_engine))
+allowed_origins = [origin for origin in settings.CORS_ORIGINS + [settings.FRONTEND_URL] if origin]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS + [settings.FRONTEND_URL],
+    allow_origins=allowed_origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],

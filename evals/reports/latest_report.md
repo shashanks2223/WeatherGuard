@@ -1,6 +1,6 @@
 # WeatherGuard Evaluation Report
 
-Run: 2026-09-22T09:57:37.097401+00:00
+Run: 2026-09-22T10:00:56.900888+00:00
 
 Summary: PASS=19 FAIL=0 NOT_APPLICABLE=1 TOTAL=20
 
@@ -93,11 +93,11 @@ Weather evidence:
 Routine cycling conditions are covered by the normal-condition policy. Continue to monitor the live weather during your trip.
 
 Weather evidence:
-- Temperature: 26.5°C
-- Wind speed: 5.1 km/h
+- Temperature: 25.9°C
+- Wind speed: 3.7 km/h
 - Precipitation: 0.0 mm (Probabili  
 **Selected SOP:** `EX-CYCLE-ROUTINE-01`  
-**Weather:** timestamp=2026-09-22 18:00:00, temperature_c=26.5, wind_speed_kmh=5.1, precipitation_mm=0.0, precipitation_probability=4.0, uv_index=0.0  
+**Weather:** timestamp=2026-09-22 19:00:00, temperature_c=25.9, wind_speed_kmh=3.7, precipitation_mm=0.0, precipitation_probability=10.0, uv_index=0.0  
 **Result:** **PASS**  
 **Explanation:** This test accepts whatever weather exists now and does not require a particular policy winner.
 
@@ -110,11 +110,11 @@ Weather evidence:
 Routine cycling conditions are covered by the normal-condition policy. Continue to monitor the live weather during your trip.
 
 Weather evidence:
-- Temperature: 26.5°C
-- Wind speed: 5.1 km/h
+- Temperature: 25.9°C
+- Wind speed: 3.7 km/h
 - Precipitation: 0.0 mm (Probabili  
 **Selected SOP:** `EX-CYCLE-ROUTINE-01`  
-**Weather:** timestamp=2026-09-22 18:00:00, temperature_c=26.5, wind_speed_kmh=5.1, precipitation_mm=0.0, precipitation_probability=4.0, uv_index=0.0  
+**Weather:** timestamp=2026-09-22 19:00:00, temperature_c=25.9, wind_speed_kmh=3.7, precipitation_mm=0.0, precipitation_probability=10.0, uv_index=0.0  
 **Result:** **NOT_APPLICABLE**  
 **Explanation:** Current live weather did not satisfy a non-low-severity SOP; deterministic severe coverage is evaluated separately.
 

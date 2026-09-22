@@ -10,14 +10,14 @@ class Settings(BaseSettings):
     PORT: int = 8000
     HOST: str = "0.0.0.0"
     LOG_LEVEL: str = "INFO"
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173"
+    CORS_ORIGINS: str = ""
     LLM_PROVIDER: str = "mock"
     LLM_MODEL: str = ""
     GEMINI_API_KEY: str = ""
     OPENAI_API_KEY: str = ""
     MODEL_NAME: str = ""
     POLICIES_DIR: Path = Path(__file__).resolve().parent / "policies"
-    FRONTEND_URL: str = "http://localhost:5173"
+    FRONTEND_URL: str = ""
 
     @field_validator("CORS_ORIGINS", mode="after")
     @classmethod

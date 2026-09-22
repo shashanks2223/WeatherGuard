@@ -141,6 +141,8 @@ uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
 
 Set `CORS_ORIGINS`, `FRONTEND_URL`, `LLM_PROVIDER`, and the selected provider secret in Render. Open-Meteo requires no API key.
 
+For a production frontend, set `CORS_ORIGINS` to the deployed Vercel origin and set `FRONTEND_URL` to the same origin. Set `LLM_MODEL` when using `openai` or `gemini`; leave provider keys empty when using the default `mock` provider.
+
 For Vercel, set the project root directory to `frontend`, use `npm run build`, and set `VITE_API_URL` to the deployed Render API URL. The frontend is otherwise a static Vite bundle; `frontend/vercel.json` contains the build defaults.
 
 A simple backend image is available at `backend/Dockerfile`; Docker is optional for local development.

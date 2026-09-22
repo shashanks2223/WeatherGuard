@@ -166,6 +166,8 @@ class WeatherGuardEvaluator:
             return EvalResult("EVAL-05", "Live weather processing", "live_weather", query, "Open-Meteo values are captured and propagated", "live request failed", None, "unavailable", "NOT_APPLICABLE", f"External live-weather service unavailable: {exc}")
         evidence = result.get("evidence_pack")
         weather = result.get("weather")
+        if result["decision"].status == DecisionStatus.WEATHER_ERROR:
+            return self._result("EVAL-05", "Live weather processing", "live_weather", query, "Open-Meteo values are captured and propagated", result, "NOT_APPLICABLE", "Open-Meteo returned an unavailable/error response during this run; deterministic weather behavior is covered separately.")
         passed = weather is not None and evidence is not None and evidence.weather == weather
         if result["decision"].status == DecisionStatus.MATCHED:
             passed = passed and any(str(value) in result["response_text"] for value in [weather.temperature_c, weather.wind_speed_kmh, weather.precipitation_mm])
