@@ -1,9 +1,10 @@
 services:
   - type: web
     name: weatherguard-api
-    runtime: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    runtime: docker
+    rootDir: .
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
     healthCheckPath: /api/health
     envVars:
       - key: LLM_PROVIDER
