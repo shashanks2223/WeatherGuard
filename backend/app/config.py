@@ -19,11 +19,16 @@ class Settings(BaseSettings):
     POLICIES_DIR: Path = Path(__file__).resolve().parent / "policies"
     FRONTEND_URL: str = ""
 
+    @field_validator("FRONTEND_URL", mode="after")
+    @classmethod
+    def normalize_frontend_url(cls, value: str) -> str:
+        return value.strip().rstrip("/")
+
     @field_validator("CORS_ORIGINS", mode="after")
     @classmethod
     def parse_cors_origins(cls, v: str) -> List[str]:
         if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",") if origin.strip()]
+            return [origin.strip().rstrip("/") for origin in v.split(",") if origin.strip()]
         return v  # type: ignore[return-value]
 
     model_config = SettingsConfigDict(
