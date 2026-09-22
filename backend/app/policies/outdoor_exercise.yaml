@@ -1,0 +1,184 @@
+# Outdoor Exercise Policies
+- id: "EX-WIND-01"
+  version: "1.0"
+  name: "High Crosswind Safety for Cyclists & Bikers"
+  category: "outdoor_exercise"
+  applies_to:
+    activities:
+      - "cycling"
+      - "biking"
+      - "bicycle"
+      - "two_wheeler"
+      - "mountain_biking"
+    categories:
+      - "outdoor_exercise"
+      - "travel"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "wind_speed_kmh"
+        operator: ">="
+        value: 38.0
+        description: "Wind speed reaches or exceeds 38 km/h"
+  severity: "high"
+  priority: 85
+  guidance:
+    title: "Hazardous Cycling Wind Speeds"
+    recommendation: "Avoid cycling or two-wheeler travel under these conditions."
+    advisory_notes: "Sustained winds and sudden crosswind gusts over 38 km/h significantly elevate collision and fall hazards."
+  evidence_fields:
+    - "wind_speed_kmh"
+
+- id: "EX-HEAT-01"
+  version: "1.0"
+  name: "Extreme Heat Strain for Outdoor Athletic Training"
+  category: "outdoor_exercise"
+  applies_to:
+    activities:
+      - "running"
+      - "jogging"
+      - "athletics"
+      - "cardio"
+      - "training"
+      - "football"
+      - "cycling"
+    categories:
+      - "outdoor_exercise"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "temperature_c"
+        operator: ">="
+        value: 35.0
+        description: "Ambient temperature reaches or exceeds 35.0°C"
+  severity: "critical"
+  priority: 90
+  guidance:
+    title: "Critical Thermal Exertion Warning"
+    recommendation: "Suspend vigorous outdoor exercise and heavy cardiovascular workouts."
+    advisory_notes: "Ambient heat above 35°C during rigorous exercise presents a high risk of hyperthermia, heat cramps, and exertional heatstroke."
+  evidence_fields:
+    - "temperature_c"
+
+- id: "EX-RAIN-01"
+  version: "1.0"
+  name: "Intense Precipitation & Traction Hazard for Outdoor Sports"
+  category: "outdoor_exercise"
+  applies_to:
+    activities:
+      - "running"
+      - "cycling"
+      - "jogging"
+      - "outdoor_workout"
+      - "tennis"
+    categories:
+      - "outdoor_exercise"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    any:
+      - field: "precipitation_mm"
+        operator: ">="
+        value: 4.0
+        description: "Active precipitation rate >= 4.0 mm"
+      - field: "precipitation_probability"
+        operator: ">="
+        value: 80
+        description: "Rain probability >= 80%"
+  severity: "moderate"
+  priority: 65
+  guidance:
+    title: "Wet Weather Athletic Disruption"
+    recommendation: "Postpone outdoor athletic training or relocate to an indoor facility."
+    advisory_notes: "Active rain compromises traction, drastically increases stopping distances on bicycles, and impairs visibility."
+  evidence_fields:
+    - "precipitation_mm"
+    - "precipitation_probability"
+
+- id: "EX-UV-01"
+  version: "1.0"
+  name: "Dangerous Solar Ultraviolet Exposure During Exercise"
+  category: "outdoor_exercise"
+  applies_to:
+    activities:
+      - "running"
+      - "cycling"
+      - "hiking"
+      - "swimming"
+      - "outdoor_workout"
+      - "walking"
+    categories:
+      - "outdoor_exercise"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "uv_index"
+        operator: ">="
+        value: 8.0
+        description: "UV index reaches or exceeds very high threshold (>= 8.0)"
+  severity: "high"
+  priority: 70
+  guidance:
+    title: "Very High UV Radiation Hazard"
+    recommendation: "Avoid prolonged unshaded outdoor training between 10:00 and 16:00."
+    advisory_notes: "Solar UV levels >= 8 cause rapid skin damage within 15-20 minutes; full UV-rated gear, broad-spectrum sunscreen, and hydration are essential."
+  evidence_fields:
+    - "uv_index"
+
+- id: "EX-CYCLE-ROUTINE-01"
+  version: "1.0"
+  name: "Routine Cycling Weather Profile"
+  category: "outdoor_exercise"
+  applies_to:
+    activities:
+      - "cycling"
+      - "biking"
+      - "bicycle"
+      - "mountain_biking"
+    categories:
+      - "outdoor_exercise"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "wind_speed_kmh"
+        operator: "<="
+        value: 34.0
+        description: "Wind remains below the routine cycling limit"
+      - field: "precipitation_mm"
+        operator: "<="
+        value: 3.0
+        description: "Accumulated precipitation remains limited"
+      - field: "precipitation_probability"
+        operator: "<="
+        value: 35
+        description: "Rain probability remains within the routine range"
+      - field: "temperature_c"
+        operator: "between"
+        value: 8.0
+        secondary_value: 33.0
+        description: "Temperature remains between the routine cycling bounds"
+      - field: "uv_index"
+        operator: "<="
+        value: 7.5
+        description: "UV remains below the elevated-exposure threshold"
+  severity: "low"
+  priority: 15
+  guidance:
+    title: "Routine Cycling Conditions Covered"
+    recommendation: "Routine cycling conditions are covered by the normal-condition policy. Continue to monitor the live weather during your trip."
+    advisory_notes: "This low-severity policy covers the configured routine weather profile; it does not override any higher-severity policy."
+  evidence_fields:
+    - "wind_speed_kmh"
+    - "precipitation_mm"
+    - "precipitation_probability"
+    - "temperature_c"
+    - "uv_index"

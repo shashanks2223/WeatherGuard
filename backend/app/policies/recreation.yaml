@@ -1,0 +1,155 @@
+# Recreation and Outdoor Leisure Policies
+- id: "RC-OUTING-PROFILE-01"
+  version: "1.0"
+  name: "Multi-Factor Meteorological Leisure Suitability Profile"
+  category: "recreation"
+  applies_to:
+    activities:
+      - "picnic"
+      - "outdoor_outing"
+      - "outing"
+      - "leisure"
+      - "outdoor_leisure"
+      - "park_visit"
+      - "barbecue"
+    categories:
+      - "recreation"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    composite_profile:
+      min_violations_to_trigger: 2
+      rules:
+        - field: "precipitation_probability"
+          operator: ">="
+          value: 40
+          description: "Rain probability elevated above leisure tolerance (>= 40%)"
+        - field: "wind_speed_kmh"
+          operator: ">="
+          value: 28.0
+          description: "Breezy conditions disrupting outdoor dining and recreation (>= 28 km/h)"
+        - field: "temperature_c"
+          operator: "<"
+          value: 16.0
+          description: "Chilly thermal comfort (< 16°C)"
+        - field: "temperature_c"
+          operator: ">="
+          value: 33.0
+          description: "Oppressive heat index for outdoor sitting (>= 33°C)"
+        - field: "uv_index"
+          operator: ">="
+          value: 7.5
+          description: "High solar radiation for unshaded picnics (>= 7.5)"
+  severity: "moderate"
+  priority: 55
+  guidance:
+    title: "Unfavorable Meteorological Profile for Outdoor Leisure"
+    recommendation: "Reconsider or reschedule outdoor leisure plans due to multi-factor meteorological discomfort."
+    advisory_notes: "A combination of marginal weather factors (such as gusty breeze, high rain probability, or thermal discomfort) diminishes leisure quality."
+  evidence_fields:
+    - "precipitation_probability"
+    - "wind_speed_kmh"
+    - "temperature_c"
+    - "uv_index"
+
+- id: "RC-GATHER-RAIN-01"
+  version: "1.0"
+  name: "Outdoor Event & Social Gathering Wet Weather Disruption"
+  category: "recreation"
+  applies_to:
+    activities:
+      - "gathering"
+      - "picnic"
+      - "party"
+      - "event"
+      - "festival"
+      - "barbecue"
+      - "outdoor_outing"
+    categories:
+      - "recreation"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "precipitation_probability"
+        operator: ">="
+        value: 65
+        description: "Rain probability reaches or exceeds 65%"
+  severity: "moderate"
+  priority: 58
+  guidance:
+    title: "Wet Weather Contingency Required for Outdoor Gatherings"
+    recommendation: "Activate sheltered venue contingencies or postpone outdoor social gathering."
+    advisory_notes: "High precipitation odds will likely cause active rain during the gathering window, damaging outdoor equipment and furniture."
+  evidence_fields:
+    - "precipitation_probability"
+
+- id: "RC-COLD-GATHER-01"
+  version: "1.0"
+  name: "Sub-Zero Freeze Disruption for Outdoor Gatherings"
+  category: "recreation"
+  applies_to:
+    activities:
+      - "gathering"
+      - "picnic"
+      - "barbecue"
+      - "outdoor_outing"
+    categories:
+      - "recreation"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "temperature_c"
+        operator: "<="
+        value: 5.0
+        description: "Ambient temperature falls to or below 5.0°C"
+  severity: "moderate"
+  priority: 52
+  guidance:
+    title: "Cold Weather Disruption for Outdoor Dining"
+    recommendation: "Move dining and social gatherings indoors or supply active heated enclosures."
+    advisory_notes: "Sustained temperatures below 5°C make prolonged sedentary outdoor exposure hazardous and uncomfortable."
+  evidence_fields:
+    - "temperature_c"
+
+- id: "RC-COMFORT-01"
+  version: "1.0"
+  name: "Mild Conditions for Casual Outdoor Leisure"
+  category: "recreation"
+  applies_to:
+    activities:
+      - "walking"
+      - "outdoor_leisure"
+      - "park_visit"
+    categories:
+      - "recreation"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "temperature_c"
+        operator: ">="
+        value: 18.0
+        description: "Temperature is comfortable for casual leisure"
+      - field: "temperature_c"
+        operator: "<"
+        value: 30.0
+        description: "Temperature remains below high-heat discomfort"
+      - field: "precipitation_probability"
+        operator: "<"
+        value: 35
+        description: "Rain probability remains low"
+  severity: "low"
+  priority: 20
+  guidance:
+    title: "Generally Favorable Leisure Conditions"
+    recommendation: "Outdoor leisure is covered by a low-severity policy under these conditions. Monitor the live weather as plans continue."
+    advisory_notes: "This policy describes favorable conditions and is not a guarantee of safety."
+  evidence_fields:
+    - "temperature_c"
+    - "precipitation_probability"

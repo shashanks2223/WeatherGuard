@@ -1,0 +1,93 @@
+# Vulnerable Groups Policies (Children, Elderly)
+- id: "VG-CHILD-UV-01"
+  version: "1.0"
+  name: "Pediatric High Solar Radiation Vulnerability"
+  category: "vulnerable_groups"
+  applies_to:
+    activities:
+      - "park_visit"
+      - "playground"
+      - "outdoor_play"
+      - "park"
+      - "walking"
+      - "picnic"
+    categories:
+      - "vulnerable_groups"
+      - "recreation"
+    user_groups:
+      - "child"
+  conditions:
+    all:
+      - field: "uv_index"
+        operator: ">="
+        value: 6.0
+        description: "UV index reaches or exceeds pediatric threshold (>= 6.0)"
+  severity: "high"
+  priority: 78
+  guidance:
+    title: "High UV Radiation Warning for Children"
+    recommendation: "Restrict children from unshaded outdoor play and playground activities."
+    advisory_notes: "Children have delicate skin with lower melanin protection; UV levels >= 6 produce erythema and sun injury significantly faster than in adults."
+  evidence_fields:
+    - "uv_index"
+
+- id: "VG-ELDER-HEAT-01"
+  version: "1.0"
+  name: "Geriatric Thermal Stress During Outdoor Walks"
+  category: "vulnerable_groups"
+  applies_to:
+    activities:
+      - "walking"
+      - "stroll"
+      - "park_visit"
+      - "outdoor_walk"
+      - "exercise"
+    categories:
+      - "vulnerable_groups"
+      - "outdoor_exercise"
+    user_groups:
+      - "elderly"
+  conditions:
+    all:
+      - field: "temperature_c"
+        operator: ">="
+        value: 31.0
+        description: "Ambient temperature reaches or exceeds 31.0°C"
+  severity: "high"
+  priority: 88
+  guidance:
+    title: "Senior Outdoor Thermal Strain Advisory"
+    recommendation: "Avoid outdoor walks and direct sun exposure during peak daylight hours."
+    advisory_notes: "Elderly thermoregulatory capacity is diminished, causing rapid dehydration, hypotension, cardiovascular strain, and heat exhaustion."
+  evidence_fields:
+    - "temperature_c"
+
+- id: "VG-CHILD-RAIN-01"
+  version: "1.0"
+  name: "Child Outdoor Recreation During Active Precipitation"
+  category: "vulnerable_groups"
+  applies_to:
+    activities:
+      - "park_visit"
+      - "playground"
+      - "outdoor_play"
+      - "park"
+    categories:
+      - "vulnerable_groups"
+      - "recreation"
+    user_groups:
+      - "child"
+  conditions:
+    all:
+      - field: "precipitation_mm"
+        operator: ">="
+        value: 1.5
+        description: "Active precipitation reaches or exceeds 1.5 mm"
+  severity: "moderate"
+  priority: 68
+  guidance:
+    title: "Pediatric Wet Weather Playground Advisory"
+    recommendation: "Shift children's playtime indoors to prevent slipping injuries and hypothermic chill."
+    advisory_notes: "Play structures (swings, slides, climbing frames) become slick and hazardous in wet conditions; wet clothing accelerates heat loss in children."
+  evidence_fields:
+    - "precipitation_mm"

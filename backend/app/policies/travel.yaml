@@ -1,0 +1,102 @@
+# Travel and Commute Policies
+- id: "TR-STORM-01"
+  version: "1.0"
+  name: "Severe Downpour & Flash Ponding Hazard for Commuters"
+  category: "travel"
+  applies_to:
+    activities:
+      - "travel"
+      - "commuting"
+      - "two_wheeler"
+      - "motorcycle"
+      - "scooter"
+      - "biking"
+      - "transit"
+    categories:
+      - "travel"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "precipitation_mm"
+        operator: ">="
+        value: 6.0
+        description: "Heavy rainfall exceeding 6.0 mm"
+  severity: "critical"
+  priority: 95
+  guidance:
+    title: "Hazardous Downpour Travel Warning"
+    recommendation: "Avoid two-wheeler and surface road commute until rainfall subsides."
+    advisory_notes: "Water accumulation causes severe aquaplaning, loss of steering control, and dangerously reduced road visibility."
+  evidence_fields:
+    - "precipitation_mm"
+
+- id: "TR-GALE-01"
+  version: "1.0"
+  name: "Gale-Force Gust Hazard for Lightweight Road Transit"
+  category: "travel"
+  applies_to:
+    activities:
+      - "travel"
+      - "two_wheeler"
+      - "motorcycle"
+      - "scooter"
+      - "cycling"
+      - "biking"
+      - "commuting"
+    categories:
+      - "travel"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "wind_speed_kmh"
+        operator: ">="
+        value: 48.0
+        description: "Sustained wind speed reaches or exceeds 48.0 km/h"
+  severity: "high"
+  priority: 82
+  guidance:
+    title: "High Wind Transit Advisory"
+    recommendation: "Avoid elevated flyovers, open expressways, and two-wheeler transit."
+    advisory_notes: "Crosswind gusts above 48 km/h present severe destabilization danger for lightweight motorbikes and pedal cycles."
+  evidence_fields:
+    - "wind_speed_kmh"
+
+- id: "TR-FREEZE-01"
+  version: "1.0"
+  name: "Near-Freezing Road Surface Black Ice Hazard"
+  category: "travel"
+  applies_to:
+    activities:
+      - "travel"
+      - "driving"
+      - "commuting"
+      - "cycling"
+      - "motorcycle"
+    categories:
+      - "travel"
+    user_groups:
+      - "adult"
+      - "general"
+  conditions:
+    all:
+      - field: "temperature_c"
+        operator: "<="
+        value: 2.0
+        description: "Temperature near or below freezing point (<= 2.0°C)"
+      - field: "precipitation_mm"
+        operator: ">"
+        value: 0.0
+        description: "Presence of moisture or liquid precipitation"
+  severity: "critical"
+  priority: 92
+  guidance:
+    title: "Black Ice & Freezing Precipitation Alert"
+    recommendation: "Halt non-emergency road travel or equip winter studded/traction gear."
+    advisory_notes: "Freezing surface moisture generates invisible black ice, leading to catastrophic traction loss and vehicle spinouts."
+  evidence_fields:
+    - "temperature_c"
+    - "precipitation_mm"
